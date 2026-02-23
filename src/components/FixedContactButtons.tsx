@@ -4,7 +4,7 @@ export default function FixedContactButtons() {
   return (
     <div className="fixed right-6 bottom-6 z-40 flex flex-col gap-4">
       <a
-        href="https://wa.me/919876543210"
+        href="https://wa.me/919608264408"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
@@ -17,7 +17,7 @@ export default function FixedContactButtons() {
       </a>
 
       <a
-        href="tel:+919876543210"
+        href="tel:+919608264408"
         className="bg-amber-600 hover:bg-amber-700 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
         aria-label="Call us"
       >

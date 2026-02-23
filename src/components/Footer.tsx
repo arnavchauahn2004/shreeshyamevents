@@ -1,6 +1,30 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Twitter, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter, Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+
+type IconProps = {
+  size?: number;
+  className?: string;
+};
+
+const InstagramIcon = ({ size = 24, className }: IconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -59,8 +83,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <Phone className="text-amber-400 mr-3 flex-shrink-0" size={20} />
-                <a href="tel:+919876543210" className="text-gray-400 hover:text-amber-400 transition-colors">
-                  +91 98765 43210
+                <a href="tel:+919608264408" className="text-gray-400 hover:text-amber-400 transition-colors">
+                  +91 9608264408
                 </a>
               </div>
               <div className="flex items-center">
@@ -140,12 +164,12 @@ export default function Footer() {
                 <Facebook size={24} />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/shreeshyamevents9?igsh=M2VrNXJ3ZHMxb3Fx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-amber-400 transition-colors"
               >
-                <Instagram size={24} />
+                <InstagramIcon size={24} />
               </a>
               <a
                 href="https://twitter.com"
