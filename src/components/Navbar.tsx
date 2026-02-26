@@ -31,26 +31,35 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+        isScrolled
+          ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg'
+          : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto pl-0.25 pr-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-3">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          
+          {/* Logo + Name */}
           <div className="flex-shrink-0">
-            <button onClick={() => scrollToSection('#home')} className="text-white">
-            <div className="flex items-center gap-3">
-             <img
-              src="/logo.jpg"
-              alt="Shreeshyam Events Logo"
-              className="h-16 w-auto rounded-full object-cover border-2 border-amber-400 shadow-lg mt-2"
-             />
-  <h1 className="text-2xl font-bold">
-    ShreeshyamEvents <span className="text-amber-400">& Planners</span>
-  </h1>
-</div>
+            <button
+              onClick={() => scrollToSection('#home')}
+              className="text-white"
+            >
+              <div className="flex items-center gap-2">
+                <img
+                  src="/logo.jpg"
+                  alt="Shreeshyam Events Logo"
+                  className="h-10 md:h-14 w-10 md:w-14 rounded-full object-cover border-2 border-amber-400 shadow-md"
+                />
+                <h1 className="text-base md:text-xl font-bold whitespace-nowrap">
+                  ShreeshyamEvents{' '}
+                  <span className="text-amber-400">& Planners</span>
+                </h1>
+              </div>
             </button>
           </div>
 
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <button
@@ -63,15 +72,17 @@ export default function Navbar() {
             ))}
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-white p-2"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-gray-900/98 backdrop-blur-sm">
           <div className="px-4 pt-2 pb-6 space-y-3">
