@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Twitter, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function Footer() {
@@ -37,7 +37,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-black text-white">
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <h3 className="text-2xl font-bold mb-6 text-amber-400">
@@ -133,7 +133,7 @@ export default function Footer() {
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
               © {new Date().getFullYear()} ShreeShyam Events and Wedding Planner. All rights reserved.
             </p>
-            <div className="flex space-x-6">
+            <div className="flex space-x-8">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -158,14 +158,7 @@ export default function Footer() {
               >
                 <Twitter size={24} />
               </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-amber-400 transition-colors"
-              >
-                <Linkedin size={24} />
-              </a>
+
             </div>
           </div>
         </div>
