@@ -51,7 +51,7 @@ export default function Navbar() {
                   alt="Shreeshyam Events Logo"
                   className="h-10 md:h-14 w-10 md:w-14 rounded-full object-cover border-2 border-amber-400 shadow-md"
                 />
-                <h1 className="text-base md:text-xl font-bold whitespace-nowrap">
+                <h1 className="text-xs md:text-xl font-bold leading-tight">
                   ShreeShyam{' '}
                   <span className="text-amber-400">Events & Wedding Planner</span>
                 </h1>
