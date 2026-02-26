@@ -52,8 +52,8 @@ export default function Navbar() {
                   className="h-10 md:h-14 w-10 md:w-14 rounded-full object-cover border-2 border-amber-400 shadow-md"
                 />
                 <h1 className="text-base md:text-xl font-bold whitespace-nowrap">
-                  ShreeShyamEvents{' '}
-                  <span className="text-amber-400">& Wedding Planners</span>
+                  ShreeShyam{' '}
+                  <span className="text-amber-400">Events & Wedding Planners</span>
                 </h1>
               </div>
             </button>

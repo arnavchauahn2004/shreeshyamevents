@@ -41,9 +41,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <h3 className="text-2xl font-bold mb-6 text-amber-400">
-              Shreeshyamevents
+              ShreeShyam Events
               <br />
-              <span className="text-lg text-white">& Planners</span>
+              <span className="text-lg text-white">& Wedding Planners</span>
             </h3>
             <p className="text-gray-400 leading-relaxed mb-4">
               Creating unforgettable moments and exceptional experiences in Jamshedpur and beyond.
@@ -131,7 +131,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {new Date().getFullYear()} Shreeshyam Events and Planners. All rights reserved.
+              © {new Date().getFullYear()} ShreeShyam Events and Wedding Planners. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a
