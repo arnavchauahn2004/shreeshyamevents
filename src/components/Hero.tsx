@@ -22,13 +22,13 @@ export default function Hero() {
         <div className="mb-6">
           <div className="inline-block">
             <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-wider">
-              Shreeshyam Events
+              ShreeShyam Events
             </h1>
             <div className="h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
           </div>
         </div>
 
-        <h2 className="text-3xl md:text-4xl mb-6 font-light italic">& Planners</h2>
+        <h2 className="text-3xl md:text-4xl mb-6 font-light italic">& Wedding Planners</h2>
 
         <p className="text-xl md:text-2xl mb-8 leading-relaxed font-light">
           Creating Unforgettable Moments in Jamshedpur
