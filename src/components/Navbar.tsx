@@ -34,7 +34,7 @@ export default function Navbar() {
         isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-2">
+      <div className="max-w-7xl mx-auto pl-0.25 pr-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
             <button onClick={() => scrollToSection('#home')} className="text-white">
