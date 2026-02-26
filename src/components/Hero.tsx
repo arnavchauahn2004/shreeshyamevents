@@ -38,7 +38,7 @@ export default function Hero() {
         </div>
 
         <h2 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-light italic text-gray-200">
-          & Wedding Planners
+          & Wedding Planner
         </h2>
 
         <p className="text-lg md:text-xl mb-6 leading-relaxed font-light">

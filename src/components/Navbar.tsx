@@ -53,7 +53,7 @@ export default function Navbar() {
                 />
                 <h1 className="text-base md:text-xl font-bold whitespace-nowrap">
                   ShreeShyam{' '}
-                  <span className="text-amber-400">Events & Wedding Planners</span>
+                  <span className="text-amber-400">Events & Wedding Planner</span>
                 </h1>
               </div>
             </button>
