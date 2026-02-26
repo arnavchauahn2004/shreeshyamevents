@@ -37,7 +37,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-black text-white">
-      <div className="max-w-7xl mx-auto px-10 py-16">
+      <div className="max-w-7xl mx-auto px-7 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <h3 className="text-2xl font-bold mb-6 text-amber-400">
