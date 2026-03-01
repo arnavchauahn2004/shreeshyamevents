@@ -1,6 +1,63 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+}
+
+/* Flip Card 3D Effect */
+.perspective {
+  perspective: 1400px;
+}
+
+.transform-style {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Fix Safari */
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Smooth GPU Acceleration */
+.rotate-y-180,
+.transform-style {
+  will-change: transform;
+}
+/* ================= MAHARAJA EFFECTS ================= */
+
+@keyframes floatSoft {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-soft {
+  animation: floatSoft 6s ease-in-out infinite;
+}
+
+.gold-glow:hover {
+  box-shadow: 0 25px 60px rgba(251, 191, 36, 0.35);
+}
+
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.4) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 1s ease;
+}
+
+.group:hover .shimmer {
+  transform: translateX(100%);
+}
