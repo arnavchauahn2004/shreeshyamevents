@@ -2,7 +2,12 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        luxury: ['Cinzel', 'serif'],
+        monte: ['MonteCarlo', 'cursive'],
+      },
+  },
   },
   plugins: [],
 };

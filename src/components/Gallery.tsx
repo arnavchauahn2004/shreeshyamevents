@@ -1,25 +1,55 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
 const galleryImages = [
   {
-    url: 'https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: "/elegant wedding.jpg",
     title: 'Elegant Wedding Setup',
     category: 'Wedding',
   },
   {
-    url: 'https://images.pexels.com/photos/2306281/pexels-photo-2306281.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: '/grand_wedding.jpg',
     title: 'Grand Wedding Ceremony',
     category: 'Wedding',
   },
   {
-    url: 'https://images.pexels.com/photos/3171815/pexels-photo-3171815.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: '/beautiful-decor.jpg',
     title: 'Beautiful Decoration',
     category: 'Decoration',
   },
   {
-    url: 'https://images.pexels.com/photos/2306277/pexels-photo-2306277.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: '/entrance3.jpg',
+    title: 'Entrance Decoration',
+    category: 'Wedding',
+  },
+  {
+    url: '/Entrance.jpg',
+    title: 'Floral Entrance',
+    category: 'Wedding',
+  },
+  {
+    url: '/haldi.jpg',
+    title: 'Haldi Decoration',
+    category: 'Wedding',
+  },
+  {
+    url: '/mehndi.jpg',
+    title: 'Mehendi Decoration',
+    category: 'Wedding',
+  },
+  {
+    url: '/mandap.jpg',
+    title: 'Mandap Decoration',
+    category: 'Wedding',
+  },
+  {
+    url: '/wedding-reception.jpg',
     title: 'Wedding Reception',
+    category: 'Wedding',
+  },
+  {
+    url: '/elegant-stage-decor2.jpg',
+    title: 'Elegant Stage Setup',
     category: 'Wedding',
   },
   {
@@ -33,28 +63,78 @@ const galleryImages = [
     category: 'Birthday',
   },
   {
-    url: 'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: '/outdoor-wedding.jpg',
     title: 'Outdoor Wedding',
     category: 'Wedding',
   },
   {
-    url: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: '/catering-spread.jpg',
     title: 'Catering Spread',
     category: 'Catering',
   },
   {
-    url: 'https://images.pexels.com/photos/3171156/pexels-photo-3171156.jpeg?auto=compress&cs=tinysrgb&w=800',
+    url: '/special-occasions.jpg',
     title: 'Special Occasion',
     category: 'Party',
   },
 ];
 
 export default function Gallery() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const nextImage = () => {
+    if (selectedIndex === null) return;
+    if (selectedIndex < galleryImages.length - 1) {
+      setSelectedIndex(selectedIndex + 1);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedIndex === null) return;
+    if (selectedIndex > 0) {
+      setSelectedIndex(selectedIndex - 1);
+    }
+  };
+
+  /* Keyboard navigation */
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "Escape") setSelectedIndex(null);
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedIndex]);
+
+  /* Swipe navigation */
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].screenX;
+
+    if (touchStartX.current - touchEndX.current > 50) {
+      nextImage();
+    }
+
+    if (touchEndX.current - touchStartX.current > 50) {
+      prevImage();
+    }
+  };
 
   return (
     <section id="gallery" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
+
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Gallery</h2>
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-6"></div>
@@ -68,7 +148,7 @@ export default function Gallery() {
             <div
               key={index}
               className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer aspect-[4/3]"
-              onClick={() => setSelectedImage(image.url)}
+              onClick={() => setSelectedIndex(index)}
             >
               <img
                 src={image.url}
@@ -86,23 +166,52 @@ export default function Gallery() {
         </div>
       </div>
 
-      {selectedImage && (
+      {selectedIndex !== null && (
         <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedIndex(null)}
         >
+
           <button
             className="absolute top-4 right-4 text-white hover:text-amber-400 transition-colors"
-            onClick={() => setSelectedImage(null)}
+            onClick={() => setSelectedIndex(null)}
           >
             <X size={32} />
           </button>
+
+          {selectedIndex > 0 && (
+            <button
+              className="absolute left-6 text-white text-5xl hover:text-amber-400 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                prevImage();
+              }}
+            >
+              ‹
+            </button>
+          )}
+
           <img
-            src={selectedImage}
+            src={galleryImages[selectedIndex].url}
             alt="Gallery preview"
-            className="max-w-full max-h-[90vh] object-contain"
+            className="max-w-full max-h-[90vh] object-contain transition-all duration-500"
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           />
+
+          {selectedIndex < galleryImages.length - 1 && (
+            <button
+              className="absolute right-6 text-white text-5xl hover:text-amber-400 transition"
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
+            >
+              ›
+            </button>
+          )}
+
         </div>
       )}
     </section>

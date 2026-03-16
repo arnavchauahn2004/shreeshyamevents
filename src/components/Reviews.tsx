@@ -2,32 +2,32 @@ import { Star, Quote } from 'lucide-react';
 
 const reviews = [
   {
-    name: 'Priya & Rahul Sharma',
+    name: 'Priya and Rahul',
     event: 'Wedding',
     rating: 5,
-    review: 'Integrated Events made our wedding day absolutely perfect! Every detail was taken care of, from the beautiful decoration to the seamless coordination. Highly recommended!',
+    review: 'ShreeShyam Events made our Wedding day absolutely perfect! Every detail was taken care of, from the beautiful decoration to the seamless coordination. Highly recommended!',
     location: 'Jamshedpur',
   },
   {
-    name: 'Tata Steel Ltd.',
+    name: 'Integrated Security and Allied Services',
     event: 'Corporate Conference',
     rating: 5,
     review: 'Professional, punctual, and precise. They handled our annual conference with over 500 attendees flawlessly. Outstanding event management!',
     location: 'Jamshedpur',
   },
   {
-    name: 'Anjali Mehta',
+    name: 'Preety Singh',
     event: 'Birthday Party',
     rating: 5,
     review: 'My daughter\'s 5th birthday was a dream come true! The theme decoration and entertainment were beyond our expectations. Thank you for making it so special!',
     location: 'Bistupur',
   },
   {
-    name: 'Rajesh Kumar',
+    name: 'Uday Prakash Singh & Mamta Kumari',
     event: 'Anniversary Celebration',
     rating: 5,
     review: 'Celebrated our 25th anniversary with Integrated Events. The team was creative, responsive, and made sure everything was perfect. Wonderful experience!',
-    location: 'Sakchi',
+    location: 'Golmuri',
   },
   {
     name: 'Sunita & Vikram Jha',
@@ -37,7 +37,7 @@ const reviews = [
     location: 'Kadma',
   },
   {
-    name: 'ABC Pvt Ltd.',
+    name: 'EIMS',
     event: 'Product Launch',
     rating: 5,
     review: 'They helped us launch our new product with a spectacular event. Great attention to detail and excellent coordination throughout.',
