@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send } from 'lucide-react';
+import { FaXTwitter } from "react-icons/fa6";
+import { Mail, Phone, MapPin, Facebook, Instagram, Send,  } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 export default function Footer() {
@@ -151,12 +152,12 @@ export default function Footer() {
                 <Instagram size={24} />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-amber-400 transition-colors"
               >
-                <Twitter size={24} />
+                <FaXTwitter size={24} />
               </a>
 
             </div>
