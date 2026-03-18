@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { X, Play } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
-const galleryImages = [
+const defaultGalleryImages = [
   {
     url: "/elegant wedding.jpg",
     title: 'Elegant Wedding Setup',
@@ -147,18 +148,34 @@ const galleryImages = [
     type: "video"
   },
 ];
-
+interface GalleryItem {
+  url: string
+  title: string
+  category: string
+  type: "photo" | "video"
+}
 export default function Gallery() {
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"photo" | "video">("photo");
   const [videoDurations, setVideoDurations] = useState<{[key:number]:string}>({});
+  const [dbGalleryImages, setDbGalleryImages] = useState<GalleryItem[]>([]);
+  const [showAllPhotos,setShowAllPhotos] = useState(false);
+  const [showAllVideos,setShowAllVideos] = useState(false);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const galleryImages = [...dbGalleryImages, ...defaultGalleryImages];
+
   const filteredGallery = galleryImages.filter(
-    (item) => item.type === activeTab
+  (item) => item.type === activeTab
   );
+  const photos = filteredGallery.filter(item=>item.type==="photo");
+  const videos = filteredGallery.filter(item=>item.type==="video");
+
+  const visiblePhotos = showAllPhotos ? photos : photos.slice(0,15);
+  const visibleVideos = showAllVideos ? videos : videos.slice(0,15);
+  const visibleItems = activeTab === "photo" ? visiblePhotos : visibleVideos;
 
   const nextImage = () => {
     if (selectedIndex === null) return;
@@ -173,6 +190,24 @@ export default function Gallery() {
       setSelectedIndex(selectedIndex - 1);
     }
   };
+  useEffect(() => {
+
+    const fetchGallery = async () => {
+    
+    const { data, error } = await supabase
+    .from("gallery")
+    .select("*")
+    .order("created_at",{ascending:false});
+    
+    if(!error && data){
+    setDbGalleryImages(data);
+    }
+    
+    };
+    
+    fetchGallery();
+    
+    }, []);
 
   /* Keyboard navigation */
   useEffect(() => {
@@ -186,7 +221,7 @@ export default function Gallery() {
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedIndex]);
+  }, [selectedIndex, nextImage, prevImage]);
 
   /* Swipe navigation */
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -247,8 +282,8 @@ export default function Gallery() {
 </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredGallery.map((image, index) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {visibleItems.map((image, index) => (
             <div
               key={index}
               className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer aspect-[4/3] transform transition duration-500 hover:-translate-y-1 hover:shadow-2xl"
@@ -289,6 +324,8 @@ export default function Gallery() {
   <img
     src={image.url}
     alt={image.title}
+    loading="lazy"
+    decoding="async"
     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
   />
 )}
@@ -301,6 +338,39 @@ export default function Gallery() {
             </div>
           ))}
         </div>
+        {activeTab === "photo" && photos.length > 15 && !showAllPhotos && (
+
+<div className="flex justify-center mt-10">
+
+<button
+onClick={()=>setShowAllPhotos(true)}
+className="bg-amber-600 text-white px-6 py-3 rounded-full hover:bg-amber-700 transition shadow-lg"
+>
+
++ View More Photos
+
+</button>
+
+</div>
+
+)}
+
+{activeTab === "video" && videos.length > 15 && !showAllVideos && (
+
+<div className="flex justify-center mt-10">
+
+<button
+onClick={()=>setShowAllVideos(true)}
+className="bg-amber-600 text-white px-6 py-3 rounded-full hover:bg-amber-700 transition shadow-lg"
+>
+
++ View More Videos
+
+</button>
+
+</div>
+
+)}  
       </div>
 
       {selectedIndex !== null && (
